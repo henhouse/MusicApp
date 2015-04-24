@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="music">
     <head>
         <title>Website</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div id="container">
+        <div id="container" ng-controller="MusicianController">
             <div id="header">
                 <h1>Music App.</h1>
                 <div class="row" id="navContainer">
@@ -25,75 +25,34 @@
                 </div>
             </div>
             <div id="content">
-                <div class="row" id="artistContainer">
+                <div class="row" id="artistContainer" ng-repeat="m in musicians">
                     <div id="artist">
                         <p>
-                            Artist
+                        {{m.name}}
                         </p>
                     </div>
                     <div id="genre">
                         <a href="#" >
-                        This could be the genre
+                        {{m.genre}}
                         </a>
                     </div>
                     <div id="albums">
                         <a href="#" >
-                        Albums
+                        Ur Mum's Hits 2015
                         </a>
                     </div>
                     <div id="songs">
                         <a href="#">
-                        Popular Songs
-                        </a>
-                    </div>
-                </div>
-                <div class="row" id="artistContainer">
-                    <div id="artist">
-                        <a href="#">
-                        This could be album art, a photo, or a link. 
-                        </a>
-                    </div>
-                    <div id="genre">
-                        <a href="#" >
-                        This could be the genre
-                        </a>
-                    </div>
-                    <div id="albums">
-                        <a href="#" >
-                        Albums
-                        </a>
-                    </div>
-                    <div id="songs">
-                        <a href="#">
-                        Popular Songs
-                        </a>
-                    </div>
-                </div>
-                <div class="row" id="artistContainer">
-                    <div id="artist">
-                        <a href="#">
-                        This could be album art, a photo, or a link. 
-                        </a>
-                    </div>
-                    <div id="genre">
-                        <a href="#" >
-                        This could be the genre
-                        </a>
-                    </div>
-                    <div id="albums">
-                        <a href="#" >
-                        Albums
-                        </a>
-                    </div>
-                    <div id="songs">
-                        <a href="#">
-                        Popular Songs
+                            {{m.instrument}}
                         </a>
                     </div>
                 </div>
             </div>
             <div id="footer">
                 <form class="form-inline">
+                        <div class="form-group">
+                            <button class="btn btn-default" ng-click>Show All Artists</button>
+                        </div>
                         <div class="form-group">
                             <label for="inputArtist">Artist</label>
                             <input type="text" class="form-control" id="inputArtist" placeholder="Henry Henderson">
@@ -114,7 +73,9 @@
                     </form>
             </div>
         </div>
-         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-         <script src="insertion.js"></script>
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js">
+		</script>
+		<script src='music.js'></script>
     </body>
 </html>
