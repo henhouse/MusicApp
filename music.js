@@ -2,7 +2,11 @@
 	var app = angular.module('music', []);
 
 	app.controller('MusicianController', ['$scope', function($scope) {
-		$scope.name = $scope.genre = $scope.instrument = '';
+		$scope.name = '';
+        $scope.genre = '';
+        $scope.albums = '';
+        $scope.songs = '';
+
 		$.getJSON('getMusician', function(result) {
 			$scope.musicians = result;
 		});
@@ -11,11 +15,12 @@
 			var newMusician = {
 				"name" : $scope.name,
 				"genre" : $scope.genre,
-				"instrument" : $scope.instrument
+				"albums" : $scope.albums,
+                "songs" : $scope.songs
 			};
 			$scope.musicians.push(newMusician);
 			$.post('putMusician', newMusician);
-		  $scope.name = $scope.genre = $scope.instrument = '';
+		  $scope.name = $scope.genre = $scope.albums = $scope.songs = '';
 		};
 		
 		$scope.remove = function(musician) {

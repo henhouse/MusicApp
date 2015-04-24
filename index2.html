@@ -28,22 +28,22 @@
                 <div class="row" id="artistContainer" ng-repeat="m in musicians">
                     <div id="artist">
                         <p>
-                        {{m.name}}
+                            {{m.name}} <br /> <button class="btn btn-default" ng-click="$parent.remove(m)">Delete Entry</button
                         </p>
                     </div>
                     <div id="genre">
                         <a href="#" >
-                        {{m.genre}}
+                            {{m.genre}}
                         </a>
                     </div>
                     <div id="albums">
                         <a href="#" >
-                        Ur Mum's Hits 2015
+                            {{m.albums}}
                         </a>
                     </div>
                     <div id="songs">
                         <a href="#">
-                            {{m.instrument}}
+                            {{m.songs}}
                         </a>
                     </div>
                 </div>
@@ -55,21 +55,21 @@
                         </div>
                         <div class="form-group">
                             <label for="inputArtist">Artist</label>
-                            <input type="text" class="form-control" id="inputArtist" placeholder="Henry Henderson">
+                            <input type="text" ng-model="name" class="form-control" id="inputArtist" placeholder="Henry Henderson">
                         </div>
                         <div class="form-group">
                             <label for="inputGenre">Genre</label>
-                            <input type="email" class="form-control" id="inputGenre" placeholder="Rock">
+                            <input type="text" ng-model="genre" class="form-control" id="inputGenre" placeholder="Rock">
                         </div>
                         <div class="form-group">
                             <label for="inputAlbum">Albums</label>
-                            <input type="text" class="form-control" id="inputAlbums" placeholder="Album">
+                            <input type="text" ng-model="albums" class="form-control" id="inputAlbums" placeholder="Album">
                         </div>
                         <div class="form-group">
                             <label for="inputSongs">Songs</label>
-                            <input type="text" class="form-control" id="inputSongs" placeholder="Andy Get Your Gun">
+                            <input type="text" ng-model="songs" class="form-control" id="inputSongs" placeholder="Andy Get Your Gun">
                         </div>
-                        <button type="submit" class="btn btn-default">Add</button>
+                        <button type="submit" class="btn btn-default" ng-disabled="!(name.length && genre.length && albums.length && songs.length)" ng-click="add()">Add</button>
                     </form>
             </div>
         </div>

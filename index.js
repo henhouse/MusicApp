@@ -14,7 +14,8 @@
 	var MusicianSchema = mongoose.Schema({
 		"name": String,
 		"genre": String,
-		"instrument": String
+        "albums" : String, // these two will need to be arrays???
+		"songs": String
 	});
 	var Musician = mongoose.model('Musician', MusicianSchema);
 
