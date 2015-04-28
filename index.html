@@ -11,21 +11,21 @@
                 <h1>Music App.</h1>
                 <div class="row" id="navContainer">
                     <div id="nav">
-                        <p>Artist</p>
+                        <p><a href="" ng-click="order='artist'">Artist</a></p>
                     </div>
                     <div id="nav">
-                         <p>Genre</p>
+                         <p><a href="" ng-click="order='genre'">Genre</a></p>
                     </div>
                     <div id="nav">
-                         <p>Albums</p>
+                         <p><a href="" ng-click="order='albums'">Albums</a></p>
                     </div>
                     <div id="nav">
-                        <p>Songs</p>
+                        <p><a href="" ng-click="order='songs'">Songs</a></p>
                     </div>
                 </div>
             </div>
             <div id="content">
-                <div class="row" id="artistContainer" ng-repeat="m in musicians | orderBy: 'name'">
+                <div class="row" id="artistContainer" ng-repeat="m in musicians | orderBy: order">
                     <div id="artist">
                         <p>
                             {{m.name}}<br /><button class="btn btn-default" ng-click="$parent.remove(m)">Delete Entry</button> <button class="btn btn-default" ng-click="$parent.edit(m);">Edit</button>

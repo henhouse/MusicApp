@@ -7,6 +7,8 @@
         $scope.albums = '';
         $scope.songs = '';
         
+        $scope.order = 'name';
+        
         var remember;
 
         $.getJSON('getMusician', function(result) {
