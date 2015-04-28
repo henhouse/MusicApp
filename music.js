@@ -6,6 +6,8 @@
         $scope.genre = '';
         $scope.albums = '';
         $scope.songs = '';
+        
+        var remember;
 
         $.getJSON('getMusician', function(result) {
             $scope.musicians = result;
@@ -26,6 +28,21 @@
         $scope.remove = function(musician) {
             $scope.musicians.splice($scope.musicians.indexOf(musician), 1);
             $.post('removeMusician', musician);
-        };                                     
+        };
+
+        $scope.edit = function(musician) {
+            $scope.name = musician.name;
+            $scope.genre = musician.genre;
+            $scope.songs = musician.songs;
+            $scope.albums = musician.albums;
+            $scope.editing = true;
+            remember = musician;
+        };
+        
+        $scope.update = function(musician) {
+            $scope.remove(remember);
+            $scope.add();
+            $scope.editing = false;
+        };
     }]);
 }());
