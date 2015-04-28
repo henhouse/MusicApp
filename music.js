@@ -8,6 +8,7 @@
         $scope.songs = '';
         
         $scope.order = 'name';
+        $scope.shown = false;
         
         var remember;
 
@@ -15,6 +16,11 @@
             $scope.musicians = result;
         });
 
+        
+        $scope.shownClicked = function() {
+            $scope.shown = true;
+        };
+        
         $scope.add = function() {
             var newMusician = {
                 "name" : $scope.name,
