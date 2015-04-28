@@ -21,34 +21,45 @@
                    <td>{{m.name}}</td>
                    <td>{{m.genre}}</td>
                    <td>{{m.albums}}</td>
-                   <td>{{m.songs}}</td>
+                   <!-- In order to properly get each Artist's songs, we must filter their songs from songs array -->
+                   <td>
+                      <span ng-repeat="s in songs | filter: m.name">{{s.song}}</span><br />
+                        <a href="" ng-click="addingSong(m.name)" ng-hide="addingSong=true">+</a>
+                   </td>
                    <td><button class="btn btn-danger" ng-click="$parent.remove(m)">Delete Entry</button> <button class="btn btn-primary" ng-click="$parent.edit(m);">Edit</button></td>
                </tr>
            </table>
         </section>
 
         <section class="modifyPanel">
-            <form class="form-inline">
-                    <div class="form-group">
-                        <label>Artist</label>
-                        <input type="text" ng-model="name" class="form-control" placeholder="Henry Henderson">
-                    </div>
-                    <div class="form-group">
-                        <label>Genre</label>
-                        <input type="text" ng-model="genre" class="form-control" placeholder="Rock">
-                    </div>
-                    <div class="form-group">
-                        <label>Albums</label>
-                        <input type="text" ng-model="albums" class="form-control" placeholder="Album">
-                    </div>
-                    <div class="form-group">
-                        <label>Songs</label>
-                        <input type="text" ng-model="songs" class="form-control" placeholder="Andy Get Your Gun">
-                    </div>
+            <form class="form-inline" ng-model="artistPanel" ng-hide="addingSong">
+                <div class="form-group">
+                    <label>Artist</label>
+                    <input type="text" ng-model="name" class="form-control" placeholder="Henry Henderson">
+                </div>
+                <div class="form-group">
+                    <label>Genre</label>
+                    <input type="text" ng-model="genre" class="form-control" placeholder="Rock">
+                </div>
+                <div class="form-group">
+                    <label>Albums</label>
+                    <input type="text" ng-model="albums" class="form-control" placeholder="Album">
+                </div>
+                <!--<div class="form-group">
+                    <label>Songs</label>
+                    <input type="text" ng-model="songs" class="form-control" placeholder="Andy Get Your Gun">
+                </div>-->
 
-                    <button type="submit" class="btn btn-default" ng-disabled="!(name.length && genre.length && albums.length && songs.length)" ng-click="add()" ng-hide="editing">Add</button>
-                    <button type="submit" class="btn btn-success" ng-disabled="!(name.length && genre.length && albums.length && songs.length)" ng-click="update()" ng-show="editing">Update</button>
-                </form>
+                <button type="submit" class="btn btn-default" ng-disabled="!(name.length && genre.length && albums.length)" ng-click="add()" ng-hide="editing">Add</button>
+                <button type="submit" class="btn btn-success" ng-disabled="!(name.length && genre.length && albums.length)" ng-click="update()" ng-show="editing">Update</button>
+            </form>
+            <form class="form-inline" ng-model="songPanel" ng-show="addingSong">
+               <div class="form-group">
+                   <label>New Song</label>
+                    <input type="text" ng-model="song" class="form-control" placeholder="Andy Get Your Gun">
+                    <button type="submit" class="btn btn-default" ng-disabled="!(song.length)" ng-click="addSong(remembername)">Add Song</button>
+                </div>
+            </form>
         </section>
 
         <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>

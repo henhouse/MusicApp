@@ -11,11 +11,16 @@
     
     mongoose.connect('mongodb://localhost/music');
     
+    var SongSchema = mongoose.Schema({
+        "artist": String,
+        "song": String
+    });
+    var Song = mongoose.model('Song', SongSchema);
     var MusicianSchema = mongoose.Schema({
         "name": String,
         "genre": String,
-        "albums" : String, // these two will need to be arrays???
-        "songs": String
+        "albums" : String,
+        //"songs": [String]
     });
     var Musician = mongoose.model('Musician', MusicianSchema);
 
@@ -30,6 +35,16 @@
             }
         });
     });
+
+    app.get("/getSong", function(req, res) {
+        Song.find(req.query, function(err, song) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json(song);
+            }
+        });
+    });
     
     app.post("/putMusician", function(req, res) {
         var newMusician = new Musician(req.body);
@@ -38,6 +53,13 @@
         });
     });
     
+    app.post("/putSong", function(req, res) {
+        var newSong = new Song(req.body);
+        newSong.save(function(error, data) {
+            if (error) console.log(error);
+        });
+    });
+
     app.post("/removeMusician", function(req, res) {
         var oldMusician = new Musician(req.body);
         oldMusician.remove(function(error, data) {
