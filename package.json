@@ -2,6 +2,9 @@
   "name": "Musician Database App",
   "description": "A simple app using the MEAN stack to store artists and their info",
   "version": "1.0",
+  "engines": {
+    "node": "0.10.x"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/acmadden/MusicApp.git"
