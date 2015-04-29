@@ -23,8 +23,12 @@
                    <td>{{m.albums}}</td>
                    <!-- In order to properly get each Artist's songs, we must filter their songs from songs array -->
                    <td>
-                      <span ng-repeat="s in songs | filter: m.name">{{s.song}}</span><br />
-                        <a href="" ng-click="addingSong(m.name)" ng-hide="addingSong=true">+</a>
+                     <ul>
+                         <li ng-repeat="s in songs | filter: m.name">
+                            {{s.song}} <a href="" ng-click="$parent.removeSong(s)" ng-hide="addingSongFlag"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                         </li>
+                     </ul>
+                       <a href="" ng-click="$parent.addingSong(m)" ng-hide="addingSongFlag"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                    </td>
                    <td><button class="btn btn-danger" ng-click="$parent.remove(m)">Delete Entry</button> <button class="btn btn-primary" ng-click="$parent.edit(m);">Edit</button></td>
                </tr>
@@ -32,7 +36,7 @@
         </section>
 
         <section class="modifyPanel">
-            <form class="form-inline" ng-model="artistPanel" ng-hide="addingSong">
+            <form class="form-inline" ng-model="artistPanel" ng-hide="addingSongFlag">
                 <div class="form-group">
                     <label>Artist</label>
                     <input type="text" ng-model="name" class="form-control" placeholder="Henry Henderson">
@@ -53,11 +57,11 @@
                 <button type="submit" class="btn btn-default" ng-disabled="!(name.length && genre.length && albums.length)" ng-click="add()" ng-hide="editing">Add</button>
                 <button type="submit" class="btn btn-success" ng-disabled="!(name.length && genre.length && albums.length)" ng-click="update()" ng-show="editing">Update</button>
             </form>
-            <form class="form-inline" ng-model="songPanel" ng-show="addingSong">
+            <form class="form-inline" ng-model="songPanel" ng-show="addingSongFlag">
                <div class="form-group">
                    <label>New Song</label>
                     <input type="text" ng-model="song" class="form-control" placeholder="Andy Get Your Gun">
-                    <button type="submit" class="btn btn-default" ng-disabled="!(song.length)" ng-click="addSong(remembername)">Add Song</button>
+                    <button type="submit" class="btn btn-default" ng-disabled="!(song.length)" ng-click="addSong()">Add Song</button>
                 </div>
             </form>
         </section>

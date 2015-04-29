@@ -9,7 +9,9 @@
         
         $scope.order = 'name';
         $scope.shown = false;
-        $scope.addingSong = false;
+        
+        $scope.addingSongFlag = false;
+        $scope.rememberName = '';
         
         var remember;
 
@@ -19,7 +21,6 @@
         
         $.getJSON('getSong', function(result) {
             $scope.songs = result;
-            console.log(result);
         });
         
         $scope.shownClicked = function() {
@@ -36,22 +37,6 @@
             $scope.musicians.push(newMusician);
             $.post('putMusician', newMusician);
           $scope.name = $scope.genre = $scope.albums = '';
-        };
-
-        $scope.addSong = function(result) {
-            var newSong = {
-                "artist" : result,
-                "song" : $scope.song
-            };
-            $scope.songs.push(newSong);
-            $.post('putSong', newSong);
-            $scope.song = '';
-            $scope.addingSong = false;
-        };
-
-        $scope.addingSong = function(result) {
-            $scope.rememberName = result; // we pass name outside of loop so we must remember
-            $scope.addingSong = true;
         };
 
         $scope.remove = function(musician) {
@@ -72,6 +57,27 @@
             $scope.remove(remember);
             $scope.add();
             $scope.editing = false;
+        };
+
+        $scope.addingSong = function(musician) {
+            $scope.rememberName = musician.name; // we pass name outside of loop so we must remember
+            $scope.addingSongFlag = true;
+        };
+
+        $scope.addSong = function() {
+            var newSong = {
+                "artist" : $scope.rememberName,
+                "song" : $scope.song
+            };
+            $scope.songs.push(newSong);
+            $.post('putSong', newSong);
+            $scope.song = '';
+            $scope.addingSongFlag = false;
+        };
+
+        $scope.removeSong = function(song) {
+            $scope.songs.splice($scope.songs.indexOf(song), 1);
+            $.post('removeSong', song);
         };
     }]);
 }());

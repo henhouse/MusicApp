@@ -67,6 +67,13 @@
         });
     });
 
+    app.post("/removeSong", function(req, res) {
+        var oldSong = new Song(req.body);
+        oldSong.remove(function(error, data) {
+            if (error) console.log(error);
+        });
+    });
+
     console.log("Server listening on port 3000."); 
 
 }());
