@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/acmadden/MusicApp/issues"
   },
-  "homepage": "https://github.com/acmadden/MusicApp"
+  "homepage": "https://github.com/acmadden/MusicApp",
+  "dependencies": {
+    "express3": "^0.0.0",
+    "mongoose": "^4.0.1"
+  },
+  "devDependencies": {}
 }
