@@ -1,4 +1,6 @@
 /************************************
+index.js - The mongoose controller that has functions for adding and deleting from a mongo database.
+
 Musician Database App
 Documentation is in comments below.
 Authors: Henry Henderson, Andrew Madden, Andy Thornburg, Rob Martin, Zach Wiseman

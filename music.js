@@ -1,4 +1,6 @@
 /************************************
+music.js - Angular file. Controls elements on the DOM and tells index.js (mongoose) to perform queries and executes on the database.
+
 Musician Database App
 Documentation is in comments below.
 Authors: Henry Henderson, Andrew Madden, Andy Thornburg, Rob Martin, Zach Wiseman

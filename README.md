@@ -3,6 +3,8 @@ A MEAN stack application to implement basic functionality that allows a user to 
 
 Dependancies - mongodb, node.js (modules: express3, mongoose)
 
+Work log through commit messages on repo at: https://github.com/acmadden/MusicApp
+
 # Authors
 Henry Henderson
 Andrew Madden
